@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: demo-app
+  namespace: demo
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: demo-app
+
+  template:
+    metadata:
+      labels:
+        app: demo-app
+
+    spec:
+      containers:
+      - name: demo-app
+
+        image: 744159939985.dkr.ecr.us-east-1.amazonaws.com/ecr-demo-app:b39b62ae4c5bd750dd2fc05c0fd9005f16ee2702
+        imagePullPolicy: IfNotPresent
+
+        ports:
+        - containerPort: 5000
+        
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+
+          limits:
+            cpu: "250m"
+            memory: "256Mi"
+
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 5000
+          initialDelaySeconds: 20
+          periodSeconds: 10
+
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 5000
+          initialDelaySeconds: 10
+          periodSeconds: 5
