@@ -21,7 +21,7 @@ spec:
       containers:
       - name: demo-app
 
-        image: 744159939985.dkr.ecr.us-east-1.amazonaws.com/ecr-demo-app:405bd54cbfecebd1d1192da0a86deabd3d49f700
+        image: 744159939985.dkr.ecr.us-east-1.amazonaws.com/ecr-demo-app:0cdbb4f431b538f0a980c1537f108dd35383eb36
         imagePullPolicy: IfNotPresent
 
         ports:
